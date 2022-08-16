@@ -1,21 +1,9 @@
 export const navigations = [
   { name: 'Catalog', path: '/catalog/default', icon: 'dashboard' },
-  { label: 'PAGES', type: 'label' },
-  {
-    name: 'Session/Auth',
-    icon: 'security',
-    children: [
-      { name: 'Sign in', iconText: 'SI', path: '/session/signin' },
-      { name: 'Sign up', iconText: 'SU', path: '/session/signup' },
-      { name: 'Forgot Password', iconText: 'FP', path: '/session/forgot-password' },
-      { name: 'Error', iconText: '404', path: '/session/404' },
-    ],
-  },
   { label: 'Components', type: 'label' },
   {
-    name: 'Components',
-    icon: 'favorite',
-    badge: { value: '30+', color: 'secondary' },
+    name: 'Example Components',
+    badge: { value: '', color: 'secondary' },
     children: [
       { name: 'Auto Complete', path: '/material/autocomplete', iconText: 'A' },
       { name: 'Buttons', path: '/material/buttons', iconText: 'B' },
@@ -34,14 +22,9 @@ export const navigations = [
     ],
   },
   {
-    name: 'Charts',
-    icon: 'trending_up',
-    children: [{ name: 'Echarts', path: '/charts/echarts', iconText: 'E' }],
-  },
-  {
     name: 'Documentation',
     icon: 'launch',
     type: 'extLink',
-    path: 'http://demos.ui-lib.com/matx-react-doc/',
+    path: 'http://google.com/',
   },
 ];
