@@ -10,7 +10,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Span } from '../../../components/Typography';
 import NotificationBar from '../../NotificationBar/NotificationBar';
-import ShoppingCart from '../../ShoppingCart';
 
 const StyledIconButton = styled(IconButton)(({ theme }) => ({
   color: theme.palette.text.primary,
@@ -63,11 +62,6 @@ const StyledItem = styled(MenuItem)(({ theme }) => ({
     textDecoration: 'none',
   },
   '& span': { marginRight: '10px', color: theme.palette.text.primary },
-}));
-
-const IconBox = styled('div')(({ theme }) => ({
-  display: 'inherit',
-  [theme.breakpoints.down('md')]: { display: 'none !important' },
 }));
 
 const Layout1Topbar = () => {

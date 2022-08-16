@@ -1,12 +1,5 @@
-import { Card, Grid, styled, useTheme } from '@mui/material';
+import { Grid, styled, useTheme } from '@mui/material';
 import { Fragment } from 'react';
-import Campaigns from './shared/examples/Campaigns';
-import DoughnutChart from './shared/examples/Doughnut';
-import RowCards from './shared/examples/RowCards';
-import StatCards from './shared/examples/StatCards';
-import StatCards2 from './shared/examples/StatCards2';
-import TopSellingTable from './shared/examples/TopSellingTable';
-import UpgradeCard from './shared/examples/UpgradeCard';
 import ApiTable from './shared/ApiTable';
 
 const ContentBox = styled('div')(({ theme }) => ({

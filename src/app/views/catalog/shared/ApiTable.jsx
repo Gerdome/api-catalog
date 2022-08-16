@@ -1,5 +1,4 @@
 import {
-  Avatar,
   Box,
   Card,
   Icon,
@@ -14,12 +13,6 @@ import {
   TableRow,
   useTheme,
 } from '@mui/material';
-import { Paragraph } from 'app/components/Typography';
-import {
-  addProductToCart,
-} from 'app/redux/actions/EcommerceActions';
-import useAuth from 'app/hooks/useAuth';
-import { useDispatch, useSelector } from 'react-redux';
 
 const CardHeader = styled(Box)(() => ({
   display: 'flex',
@@ -62,10 +55,7 @@ const Small = styled('small')(({ bgcolor }) => ({
 }));
 
 const ApiTable = () => {
-  const { user } = useAuth();
-  const dispatch = useDispatch();
   const { palette } = useTheme();
-  const bgError = palette.error.main;
   const bgPrimary = palette.primary.main;
   const bgSecondary = palette.secondary.main;
 
