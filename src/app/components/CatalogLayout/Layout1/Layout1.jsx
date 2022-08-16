@@ -1,6 +1,6 @@
 import { ThemeProvider, useMediaQuery } from '@mui/material';
 import { Box, styled, useTheme } from '@mui/system';
-import { MatxSuspense } from 'app/components';
+import { CatalogSuspense } from 'app/components';
 import useSettings from 'app/hooks/useSettings';
 import { sidenavCompactWidth, sideNavWidth } from 'app/utils/constant';
 import React, { useEffect, useRef } from 'react';
@@ -107,9 +107,9 @@ const Layout1 = () => {
               </ThemeProvider>
             )}
             <Box flexGrow={1} position="relative">
-              <MatxSuspense>
+              <CatalogSuspense>
                 <Outlet />
-              </MatxSuspense>
+              </CatalogSuspense>
             </Box>
 
             {settings.footer.show && !settings.footer.fixed && <Footer />}
@@ -125,9 +125,9 @@ const Layout1 = () => {
             )}
 
             <Box flexGrow={1} position="relative">
-              <MatxSuspense>
+              <CatalogSuspense>
                 <Outlet />
-              </MatxSuspense>
+              </CatalogSuspense>
             </Box>
 
             {settings.footer.show && !settings.footer.fixed && <Footer />}

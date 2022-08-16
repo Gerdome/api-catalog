@@ -1,6 +1,6 @@
 import { Avatar, Hidden, Icon, IconButton, MenuItem, useMediaQuery } from '@mui/material';
 import { Box, styled, useTheme } from '@mui/system';
-import { MatxMenu, MatxSearchBox } from 'app/components';
+import { CatalogMenu, SearchBox } from 'app/components';
 import { themeShadows } from 'app/components/CatalogTheme/themeColors';
 import { NotificationProvider } from 'app/contexts/NotificationContext';
 import useAuth from 'app/hooks/useAuth';
@@ -97,13 +97,13 @@ const Layout1Topbar = () => {
         </Box>
 
         <Box display="flex" alignItems="center">
-          <MatxSearchBox />
+          <SearchBox />
 
           <NotificationProvider>
             <NotificationBar />
           </NotificationProvider>
 
-          <MatxMenu
+          <CatalogMenu
             menuButton={
               <UserMenu>
                 <Hidden xsDown>
@@ -138,7 +138,7 @@ const Layout1Topbar = () => {
               <Icon> power_settings_new </Icon>
               <Span> Logout </Span>
             </StyledItem>
-          </MatxMenu>
+          </CatalogMenu>
         </Box>
       </TopbarContainer>
     </TopbarRoot>

@@ -1,4 +1,4 @@
-import { MatxSuspense } from 'app/components';
+import { CatalogSuspense } from 'app/components';
 import useSettings from 'app/hooks/useSettings';
 import { CatalogLayouts } from './index';
 
@@ -7,9 +7,9 @@ const CatalogLayout = (props) => {
   const Layout = CatalogLayouts[settings.activeLayout];
 
   return (
-    <MatxSuspense>
+    <CatalogSuspense>
       <Layout {...props} />
-    </MatxSuspense>
+    </CatalogSuspense>
   );
 };
 

@@ -31,7 +31,7 @@ const SearchInput = styled('input')(({ theme }) => ({
   '&::placeholder': { color: theme.palette.text.primary },
 }));
 
-const MatxSearchBox = () => {
+const SearchBox = () => {
   const [open, setOpen] = useState(false);
   const toggle = () => {
     setOpen(!open);
@@ -60,4 +60,4 @@ const MatxSearchBox = () => {
   );
 };
 
-export default MatxSearchBox;
+export default SearchBox;
