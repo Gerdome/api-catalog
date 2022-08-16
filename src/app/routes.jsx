@@ -3,13 +3,13 @@ import catalogRoutes from 'app/views/catalog/CatalogRoutes';
 import NotFound from 'app/views/sessions/NotFound';
 import sessionRoutes from 'app/views/sessions/SessionRoutes';
 import { Navigate } from 'react-router-dom';
-import MatxLayout from './components/MatxLayout/MatxLayout';
+import CatalogLayout from './components/CatalogLayout/CatalogLayout';
 
 const routes = [
   {
     element: (
       <AuthGuard>
-        <MatxLayout />
+        <CatalogLayout />
       </AuthGuard>
     ),
     children: [...catalogRoutes],

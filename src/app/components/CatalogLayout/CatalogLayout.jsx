@@ -1,10 +1,10 @@
 import { MatxSuspense } from 'app/components';
 import useSettings from 'app/hooks/useSettings';
-import { MatxLayouts } from './index';
+import { CatalogLayouts } from './index';
 
-const MatxLayout = (props) => {
+const CatalogLayout = (props) => {
   const { settings } = useSettings();
-  const Layout = MatxLayouts[settings.activeLayout];
+  const Layout = CatalogLayouts[settings.activeLayout];
 
   return (
     <MatxSuspense>
@@ -13,4 +13,4 @@ const MatxLayout = (props) => {
   );
 };
 
-export default MatxLayout;
+export default CatalogLayout;

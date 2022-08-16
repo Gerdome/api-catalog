@@ -6,8 +6,8 @@ const Content = styled('div')(() => ({
   position: 'relative',
 }));
 
-const MatxSidenavContent = ({ children }) => {
+const CatalogSidenavContent = ({ children }) => {
   return <Content>{children}</Content>;
 };
 
-export default MatxSidenavContent;
+export default CatalogSidenavContent;

@@ -2,16 +2,16 @@ import React, { createContext, useState } from 'react'
 
 import { merge } from 'lodash'
 
-import { MatxLayoutSettings } from 'app/components/MatxLayout/settings'
+import { CatalogLayoutSettings } from 'app/components/CatalogLayout/settings'
 
 const SettingsContext = createContext({
-    settings: MatxLayoutSettings,
+    settings: CatalogLayoutSettings,
     updateSettings: () => {},
 })
 
 export const SettingsProvider = ({ settings, children }) => {
     const [currentSettings, setCurrentSettings] = useState(
-        settings || MatxLayoutSettings
+        settings || CatalogLayoutSettings
     )
 
     const handleUpdateSettings = (update = {}) => {
