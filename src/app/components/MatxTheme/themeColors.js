@@ -23,6 +23,43 @@ const errorColor = {
 };
 
 export const themeColors = {
+  whiteDarkred: {
+    palette: {
+      type: 'light',
+      primary: {
+        main: '#ffffff',
+        contrastText: textLight.primary,
+      },
+      secondary: {
+        main: '#6c0024',
+        contrastText: '#ffffff',
+      },
+      background: {
+        paper: '#fff',
+        default: '#fafafa',
+      },
+      text: textLight,
+    },
+  },
+  helsana: {
+    palette: {
+      type: 'light',
+      primary: {
+        main: '#860032',
+        contrastText: textLight.primary,
+      },
+      secondary: {
+        main: '#efefef',
+        contrastText: '#ffffff',
+      },
+      background: {
+        paper: '#fff',
+        default: '#fafafa',
+      },
+      error: errorColor,
+      text: textLight,
+    },
+  },
   whitePurple: {
     palette: {
       type: 'light',

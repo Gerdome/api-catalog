@@ -8,10 +8,10 @@ const userList = [
   {
     id: 1,
     role: 'SA',
-    name: 'Jason Alexander',
-    username: 'jason_alexander',
-    email: 'jason@ui-lib.com',
-    avatar: '/assets/images/face-6.jpg',
+    name: 'Gerrit Merz',
+    username: 'gerrit_merz',
+    email: 'gerrit.merz@ipt.ch',
+    avatar: '/assets/images/gm_avatar.jpg',
     age: 25,
   },
 ];

@@ -1,5 +1,4 @@
-import { Box, styled } from '@mui/material';
-import { MatxLogo } from 'app/components';
+import { Avatar, Box, styled } from '@mui/material';
 import useSettings from 'app/hooks/useSettings';
 import { Span } from './Typography';
 
@@ -24,9 +23,9 @@ const Brand = ({ children }) => {
   return (
     <BrandRoot>
       <Box display="flex" alignItems="center">
-        <MatxLogo />
+        <Avatar src='/assets/images/helsana-logo.jpg' sx={{ padding: '8px' }}/>
         <StyledSpan mode={mode} className="sidenavHoverShow">
-          Matx
+          Api Catalog
         </StyledSpan>
       </Box>
 
