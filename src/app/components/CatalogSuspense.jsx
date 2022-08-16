@@ -1,8 +1,8 @@
 import {CatalogLoading } from 'app/components';
 import { Suspense } from 'react';
 
-const MatxSuspense = ({ children }) => {
+const CatalogSuspense = ({ children }) => {
   return <Suspense fallback={<CatalogLoading />}>{children}</Suspense>;
 };
 
-export default MatxSuspense;
+export default CatalogSuspense;
