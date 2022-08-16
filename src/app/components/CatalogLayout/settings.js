@@ -1,4 +1,4 @@
-import { themes } from '../MatxTheme/initThemes';
+import { themes } from '../CatalogTheme/initThemes';
 import layout1Settings from './Layout1/Layout1Settings';
 
 // UPDATE BELOW CODE

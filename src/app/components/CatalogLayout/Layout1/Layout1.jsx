@@ -7,7 +7,7 @@ import React, { useEffect, useRef } from 'react';
 import Scrollbar from 'react-perfect-scrollbar';
 import { Outlet } from 'react-router-dom';
 import Footer from '../../Footer';
-import SidenavTheme from '../../MatxTheme/SidenavTheme/SidenavTheme';
+import SidenavTheme from '../../CatalogTheme/SidenavTheme/SidenavTheme';
 import Layout1Sidenav from './Layout1Sidenav';
 import Layout1Topbar from './Layout1Topbar';
 

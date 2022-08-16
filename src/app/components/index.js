@@ -12,6 +12,6 @@ export { default as CatalogSidenavContainer } from './CatalogSidenav/CatalogSide
 export { default as CatalogSidenavContent } from './CatalogSidenav/CatalogSidenavContent';
 export { default as MatxSuspense } from './MatxSuspense';
 export { default as CatalogTheme } from './CatalogTheme/CatalogTheme';
-export { default as MatxVerticalNav } from './MatxVerticalNav/MatxVerticalNav';
-export { default as MatxVerticalNavExpansionPanel } from './MatxVerticalNav/MatxVerticalNavExpansionPanel';
+export { default as CatalogVerticalNav } from './MatxVerticalNav/CatalogVerticalNav';
+export { default as CatalogVerticalNavExpansionPanel } from './MatxVerticalNav/CatalogVerticalNavExpansionPanel';
 export { default as SimpleCard } from './SimpleCard';
