@@ -57,15 +57,15 @@ const catalogDB = {
     objectOwnerList: [
         {
             id: '1',
-            name: 'Gerrit Merz',
+            name: 'Team A',
         },
         {
             id: '2',
-            name: 'Joachim Huber',
+            name: 'Team B',
         },
         {
             id: '3',
-            name: 'Christian Sanabria',
+            name: 'Team C',
         },
     ],
 }

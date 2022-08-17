@@ -5,8 +5,10 @@ import {
     TableCell,
     TableHead,
     TableRow,
+    useTheme
   } from '@mui/material';
   import { useDispatch, useSelector } from 'react-redux';
+  import { Link } from 'react-router-dom';
   import { getObjectOwnerList } from 'app/redux/actions/CatalogActions';
   import { CardHeader, Title, CatalogTable } from './TableStyles';
   
@@ -14,6 +16,7 @@ import {
   let objectOwnerListLoaded = false;
   
   const ObjectOwnerTable = () => {
+    const { palette } = useTheme();
     const dispatch = useDispatch();
     const { objectOwnerList } = useSelector((state) => state.catalog);
 
@@ -45,7 +48,7 @@ import {
               {objectOwnerList.map((owner, index) => (
                 <TableRow key={index} hover style ={ index % 2? { background : "#f6f6f6" }:{ background : "white" }}>
                   <TableCell sx={{ px: 3 }} colSpan={1}>
-                    {owner.name}
+                    <Link to={`team/${owner.id}`} style={{'color': palette.primary.main, 'textDecoration': 'underline'}}>{owner.name}</Link> 
                   </TableCell>
                   <TableCell sx={{ px: 0 }} colSpan={1}>
                     {owner.id}

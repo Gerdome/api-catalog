@@ -1,60 +1,23 @@
-import { Card, Grid, styled, useTheme } from '@mui/material';
+import { Card } from '@mui/material';
 import { Fragment } from 'react';
 import { AppBar } from '@mui/material';
 import { Tabs } from '@mui/material';
 import { Tab } from '@mui/material';
 import React from 'react';
-import { Typography } from '@mui/material';
 import { Box } from '@mui/material';
-import PropTypes from "prop-types";
 import { Breadcrumb } from 'app/components';
 import SwaggerGUI from './SwaggerUI';
 import {useParams} from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { ContentBox, BreadcrumbContainer } from '../shared/styles/ViewStyles';
+import { TabPanel, a11yProps } from '../shared/Tab';
 
-
-
-const BreadcrumbContainer = styled("div")(({ theme }) => ({
-    margin: "30px",
-    [theme.breakpoints.down("sm")]: { margin: "16px" },
-    "& .breadcrumb": {
-        marginBottom: "30px",
-        [theme.breakpoints.down("sm")]: { marginBottom: "16px" },
-    },
-}));
-
-const ContentBox = styled('div')(({ theme }) => ({
-    margin: '30px',
-    [theme.breakpoints.down('sm')]: { margin: '16px' },
-}));
-
-function TabPanel(props) {
-    const { children, value, index, ...other } = props;
-
-    return (
-        <Typography>
-            {value === index && <Box p={3}>{children}</Box>}
-        </Typography>
-    );
-}
-
-TabPanel.propTypes = {
-    children: PropTypes.node,
-    index: PropTypes.any.isRequired,
-    value: PropTypes.any.isRequired
-};
-
-function a11yProps(index) {
-    return {
-        id: `scrollable-auto-tab-${index}`,
-        "aria-controls": `scrollable-auto-tabpanel-${index}`
-    };
-}
-
-const CatalogDetail = () => {
+const ApiView = () => {
     const [value, setValue] = React.useState(0);
-    const { apiName } = useParams();
+    const { apiId } = useParams();
     const { apiList } = useSelector((state) => state.catalog);
+    const apiName = (apiList !== null) && (apiList.length > 0) ? apiList.find(({id}) => id === apiId).name : '';
+
 
     function handleChange(event, newValue) {
         setValue(newValue);
@@ -64,7 +27,7 @@ const CatalogDetail = () => {
         <Fragment>
             <BreadcrumbContainer>
                 <Box className="breadcrumb">
-                    <Breadcrumb routeSegments={[{ name: "Catalog", path: "/catalog/default" }, { name: "API", path: "/catalog/default/api" }, { name: "Petstore" }]} />
+                    <Breadcrumb routeSegments={[{ name: "Catalog", path: "/catalog/default" }, { name: "API", path: "/catalog/default/api" }, { name: apiName }]} />
                 </Box>
             </BreadcrumbContainer>
             <ContentBox>
@@ -89,7 +52,7 @@ const CatalogDetail = () => {
                     Overview {apiName}
                 </TabPanel>
                 <TabPanel value={value} index={1}>
-                    <SwaggerGUI openApiSpec={(apiList !== null) && (apiList.length > 0) ? apiList.find(({name}) => name === apiName).openapi : '' } ></SwaggerGUI>
+                    <SwaggerGUI openApiSpec={(apiList !== null) && (apiList.length > 0) ? apiList.find(({id}) => id === apiId).openapi : '' } ></SwaggerGUI>
                 </TabPanel>
                 <TabPanel value={value} index={2}>
                     OpenShift
@@ -103,4 +66,4 @@ const CatalogDetail = () => {
     );
 };
 
-export default CatalogDetail;
+export default ApiView;

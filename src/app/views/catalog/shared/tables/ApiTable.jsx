@@ -76,15 +76,19 @@ const ApiTable = () => {
 
           <TableBody>
             {apiList.map((api, index) => (
-              <TableRow key={index} hover style ={ index % 2? { background : "#f6f6f6" }:{ background : "white" }}>
+              <TableRow key={index} hover style={index % 2 ? { background: "#f6f6f6" } : { background: "white" }}>
                 <TableCell sx={{ px: 3 }} colSpan={2}>
-                  <Link to={`api/${api.name}`} style={{'color': palette.primary.main, 'textDecoration': 'underline'}}>{api.name}</Link> 
+                  <Link to={`api/${api.id}`} style={{ 'color': palette.primary.main, 'textDecoration': 'underline' }}>{api.name}</Link>
                 </TableCell>
                 <TableCell sx={{ px: 0 }} colSpan={2}>
-                  { (objectOwnerList !== null) && (objectOwnerList.length > 0) ? objectOwnerList.find(({id}) => id === api.ownerObjectId).name : ''}
+                  <Link to={`team/${api.ownerObjectId}`} style={{ 'color': palette.primary.main, 'textDecoration': 'underline' }}>
+                    {(objectOwnerList !== null) && (objectOwnerList.length > 0) ? objectOwnerList.find(({ id }) => id === api.ownerObjectId).name : ''}
+                  </Link>
                 </TableCell>
                 <TableCell sx={{ px: 0 }} colSpan={2}>
-                  { (dataSourceList !== null) && (dataSourceList.length > 0) ? dataSourceList.find(({id}) => id === api.dataSourceId).name : ''}
+                  <Link to={`data-source/${api.dataSourceId}`} style={{ 'color': palette.primary.main, 'textDecoration': 'underline' }}>
+                    {(dataSourceList !== null) && (dataSourceList.length > 0) ? dataSourceList.find(({ id }) => id === api.dataSourceId).name : ''}
+                  </Link>
                 </TableCell>
                 <TableCell sx={{ px: 0 }} colSpan={1}>
                   {api.type}
@@ -97,9 +101,9 @@ const ApiTable = () => {
                   <Small bgcolor={bgSecondary}>Tag</Small>
                 </TableCell>
                 <TableCell sx={{ px: 0 }} colSpan={1}>
-                <IconButton onClick={handleOpenApi}>
-                    <Icon 
-                    color="primary"
+                  <IconButton onClick={handleOpenApi}>
+                    <Icon
+                      color="primary"
                     >edit</Icon>
                   </IconButton>
                 </TableCell>
