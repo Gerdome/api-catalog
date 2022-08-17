@@ -13,6 +13,9 @@ import {
   TableRow,
   useTheme,
 } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getApiList } from 'app/redux/actions/CatalogActions';
 
 const CardHeader = styled(Box)(() => ({
   display: 'flex',
@@ -54,10 +57,24 @@ const Small = styled('small')(({ bgcolor }) => ({
   boxShadow: '0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 2px 0 rgba(0, 0, 0, 0.24)',
 }));
 
+let apiCatalogLoaded = false;
+
 const ApiTable = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { apiList } = useSelector((state) => state.catalog);
   const { palette } = useTheme();
   const bgPrimary = palette.primary.main;
   const bgSecondary = palette.secondary.main;
+
+  if (!apiCatalogLoaded) {
+    dispatch(getApiList());
+    apiCatalogLoaded = true;
+  }
+
+  const handleOpenApi = () => {
+    navigate('/catalog/petstore');
+  }
 
   return (
     <Card elevation={3} sx={{ pt: '20px', mb: 3 }}>
@@ -114,7 +131,7 @@ const ApiTable = () => {
                   <Small bgcolor={bgSecondary}>Tag</Small>
                 </TableCell>
                 <TableCell sx={{ px: 0 }} colSpan={1}>
-                <IconButton onClick={() => console.log("Do sth with Api")}>
+                <IconButton onClick={handleOpenApi}>
                     <Icon 
                     color="primary"
                     >edit</Icon>
@@ -128,38 +145,5 @@ const ApiTable = () => {
     </Card>
   );
 };
-
-const apiList = [
-  {
-    name: 'petstore',
-    owner: 'Gerrit',
-    type: 'openapi',
-    description: 'This is a description.',
-  },
-  {
-    name: 'star-wars',
-    owner: 'Joachim',
-    type: 'graphql',
-    description: 'This is a description.',
-  },
-  {
-    name: 'some-grpc',
-    owner: 'Conradin',
-    type: 'grpc',
-    description: 'This is a description.',
-  },
-  {
-    name: 'some-async',
-    owner: 'Some Dude',
-    type: 'asyncapi',
-    description: 'This is a description.',
-  },
-  {
-    name: 'another-openapi',
-    owner: 'Another Dude',
-    type: 'openapi',
-    description:'This is a description.',
-  },
-];
 
 export default ApiTable;
