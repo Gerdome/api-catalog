@@ -1,0 +1,750 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+      "title": "API Catalog Dashboard",
+      "version": "1.0.0"
+    },
+    "tags": [
+      {
+        "name": "apiDefinition",
+        "description": "Resources to manage APIs."
+      },
+      {
+        "name": "ownership",
+        "description": "Resources to manage the ownership of an API."
+      }
+    ],
+    "paths": {
+      "/api/v1/apiDefinitions/{apiDefinitionId}": {
+        "get": {
+          "tags": [
+            "apiDefinition"
+          ],
+          "operationId": "getApi",
+          "parameters": [
+            {
+              "name": "apiDefinitionId",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "schema": {
+                "$ref": "#/components/schemas/UUID"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/apiDefinition"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "apiDefinition"
+          ],
+          "operationId": "updateApi",
+          "parameters": [
+            {
+              "name": "apiDefinitionId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "$ref": "#/components/schemas/UUID"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiDefinition"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "202": {
+              "description": "Successful response"
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "apiDefinition"
+          ],
+          "description": "Deletes an existing `api`.",
+          "operationId": "deleteApi",
+          "parameters": [
+            {
+              "name": "apiDefinitionId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "$ref": "#/components/schemas/UUID"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "204": {
+              "description": "Successful response."
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "apiDefinitionId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/api/v1/dataOwners": {
+        "summary": "Path used to manage the list of owners.",
+        "description": "The REST endpoint/path used to list and create zero or more `owner` entities.  This path contains a `GET` and `POST` operation to perform the list and create tasks, respectively.",
+        "get": {
+          "tags": [
+            "ownership"
+          ],
+          "summary": "List All owners",
+          "description": "Gets a list of all `owner` entities.",
+          "operationId": "getOwners",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/dataOwner"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "tags": [
+            "ownership"
+          ],
+          "summary": "Create a owner",
+          "description": "Creates a new instance of a `owner`.",
+          "operationId": "createOwner",
+          "requestBody": {
+            "description": "A new `owner` to be created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataOwner"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "201": {
+              "description": "Successful response.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/resourceId"
+                  },
+                  "examples": {
+                    "ownerId": {
+                      "value": "c45eb925-31bd-48d1-b124-650f8f1e4089"
+                    }
+                  }
+                }
+              },
+              "links": {
+                "GetOwner": {
+                  "operationId": "getOwner",
+                  "parameters": {
+                    "ownerId": "$response.body#/id"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/v1/dataOwners/{ownerId}": {
+        "summary": "Path used to manage a single owner.",
+        "description": "The REST endpoint/path used to get, update, and delete single instances of an `owner`.  This path contains `GET`, `PUT`, and `DELETE` operations used to perform the get, update, and delete tasks, respectively.",
+        "get": {
+          "tags": [
+            "ownership"
+          ],
+          "summary": "Get an owner",
+          "description": "Gets the details of a single instance of a `owner`.",
+          "operationId": "getOwner",
+          "parameters": [
+            {
+              "name": "ownerId",
+              "in": "path",
+              "description": "A unique identifier for a `owner`.",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/dataOwner"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "ownership"
+          ],
+          "summary": "Update a owner",
+          "description": "Updates an existing `owner`.",
+          "operationId": "updateOwner",
+          "parameters": [
+            {
+              "name": "ownerId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "$ref": "#/components/schemas/UUID"
+              }
+            }
+          ],
+          "requestBody": {
+            "description": "Updated `owner` information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataOwner"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "202": {
+              "description": "Successful response."
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "ownership"
+          ],
+          "summary": "Delete a owner",
+          "description": "Deletes an existing `owner`.",
+          "operationId": "deleteOwner",
+          "parameters": [
+            {
+              "name": "ownerId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "$ref": "#/components/schemas/UUID"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "204": {
+              "description": "Successful response."
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "ownerId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/api/v1/dataSources": {
+        "summary": "Path used to manage the list of data.",
+        "description": "The REST endpoint/path used to list and create zero or more `data` entities.  This path contains a `GET` and `POST` operation to perform the list and create tasks, respectively.",
+        "get": {
+          "tags": [
+            "ownership"
+          ],
+          "summary": "List All data",
+          "description": "Gets a list of all `data` entities.",
+          "operationId": "getDataSources",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/dataSource"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "tags": [
+            "ownership"
+          ],
+          "summary": "Create a data",
+          "description": "Creates a new instance of a `datasource`.",
+          "operationId": "createDataSource",
+          "requestBody": {
+            "description": "A new `data` to be created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataSource"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "201": {
+              "description": "Successful response."
+            }
+          }
+        }
+      },
+      "/api/v1/dataSources/{dataSourceId}": {
+        "summary": "Path used to manage a single data.",
+        "description": "The REST endpoint/path used to get, update, and delete single instances of an `data`.  This path contains `GET`, `PUT`, and `DELETE` operations used to perform the get, update, and delete tasks, respectively.",
+        "get": {
+          "tags": [
+            "ownership"
+          ],
+          "summary": "Get a dataSource",
+          "description": "Gets the details of a single instance of a `dataSource`.",
+          "operationId": "getDataSource",
+          "parameters": [
+            {
+              "name": "dataSourceId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/dataSource"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "ownership"
+          ],
+          "summary": "Update a data",
+          "description": "Updates an existing `dataSource`.",
+          "operationId": "updateDataSource",
+          "parameters": [
+            {
+              "name": "dataSourceId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "description": "Updated `data` information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataSource"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "202": {
+              "description": "Successful response."
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "ownership"
+          ],
+          "summary": "Delete a data",
+          "description": "Deletes an existing `dataSource`.",
+          "operationId": "deleteDataSource",
+          "parameters": [
+            {
+              "name": "dataSourceId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "204": {
+              "description": "Successful response."
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "dataSourceId",
+            "in": "path",
+            "description": "A unique identifier for a `dataSource`.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/api/v1/apiDefinitions": {
+        "get": {
+          "tags": [
+            "apiDefinition"
+          ],
+          "summary": "List of all apis",
+          "operationId": "getAllApis",
+          "parameters": [
+            {
+              "name": "sort",
+              "in": "query",
+              "description": "Sorting according to a specific field. Fields are comma-separated, the direction is determined by means of \"+\" (ascending) or \"-\" (descending).",
+              "required": false,
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            {
+              "name": "pageIndex",
+              "in": "query",
+              "description": "the page index",
+              "required": true,
+              "schema": {
+                "format": "int32",
+                "type": "integer",
+                "nullable": false
+              }
+            },
+            {
+              "name": "pageSize",
+              "in": "query",
+              "description": "the page size",
+              "required": true,
+              "schema": {
+                "format": "int32",
+                "type": "integer",
+                "nullable": false
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/apiDefinition"
+                    }
+                  },
+                  "examples": {
+                    "api list example": {
+                      "value": [
+                        {
+                          "id": "14a0cf4d-f02f-471f-882c-14727f749a68",
+                          "name": "a sample API"
+                        },
+                        {
+                          "id": "5d261767-fa50-41d6-a9a9-6a3c5e859a62",
+                          "name": "anouther sample API"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "tags": [
+            "apiDefinition"
+          ],
+          "operationId": "createApi",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiDefinition"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "dataSource": {
+          "title": "Root Type for data",
+          "description": "Represents a data-source whose data is exposed over an API",
+          "required": [
+            "name"
+          ],
+          "type": "object",
+          "properties": {
+            "id": {
+              "format": "uuid",
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "example": {
+            "id": "fe29cf38-7ec4-4b48-90b3-42c2bf0270cc",
+            "name": "CRM XYZ"
+          }
+        },
+        "resourceId": {
+          "description": "id of the created resource",
+          "required": [
+            "id"
+          ],
+          "type": "object",
+          "properties": {
+            "id": {
+              "format": "uuid",
+              "description": "uuid of the created resource",
+              "type": "string"
+            }
+          }
+        },
+        "dataOwner": {
+          "title": "Root Type for owner",
+          "description": "An owner of an API or owner of data exposed by an API",
+          "required": [
+            "name",
+            "oid"
+          ],
+          "type": "object",
+          "properties": {
+            "objectId": {
+              "format": "uuid",
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "id": {
+              "format": "uuid",
+              "description": "Optional and will be ignored for POST requests.",
+              "type": "string"
+            }
+          },
+          "example": {
+            "id": "09a73083-74dc-4929-87bc-a6b8bb0b48b2",
+            "objectId": "1b80e47e-7069-480d-9cf2-273cc071b0a9",
+            "name": "John Doe"
+          }
+        },
+        "apiDefinition": {
+          "title": "Root Type for apiPresentation",
+          "description": "Full API presentation",
+          "required": [
+            "notificationMailAddress"
+          ],
+          "type": "object",
+          "properties": {
+            "id": {
+              "format": "uuid",
+              "description": "Will be ignored for POST requests.",
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "version": {
+              "type": "string"
+            },
+            "state": {
+              "$ref": "#/components/schemas/State"
+            },
+            "dataSourceId": {
+              "format": "uuid",
+              "description": "Id of the exposed data-source",
+              "type": "string"
+            },
+            "ownerObjectId": {
+              "format": "uuid",
+              "description": "Id of the API-Owner",
+              "type": "string"
+            },
+            "notificationMailAddress": {
+              "description": "E-Mail-address to be used for usage requests",
+              "type": "string"
+            }
+          },
+          "example": {
+            "id": "86776644-0a0d-483b-ba8a-fda5e17ecf6e",
+            "name": "my sample API",
+            "version": "2.0.3",
+            "state": "active"
+          }
+        },
+        "State": {
+          "enum": [
+            "active",
+            "deprecated"
+          ],
+          "type": "string"
+        },
+        "ApiDefinition": {
+          "required": [
+            "notificationMailAddress"
+          ],
+          "type": "object",
+          "properties": {
+            "notificationMailAddress": {
+              "type": "string",
+              "nullable": false
+            },
+            "id": {
+              "$ref": "#/components/schemas/UUID"
+            },
+            "name": {
+              "type": "string"
+            },
+            "version": {
+              "type": "string"
+            },
+            "state": {
+              "$ref": "#/components/schemas/State"
+            },
+            "dataSourceId": {
+              "$ref": "#/components/schemas/UUID"
+            },
+            "ownerObjectId": {
+              "$ref": "#/components/schemas/UUID"
+            }
+          }
+        },
+        "DataOwner": {
+          "required": [
+            "name"
+          ],
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "nullable": false
+            },
+            "objectId": {
+              "$ref": "#/components/schemas/UUID"
+            },
+            "id": {
+              "$ref": "#/components/schemas/UUID"
+            }
+          }
+        },
+        "DataSource": {
+          "required": [
+            "name"
+          ],
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "nullable": false
+            },
+            "id": {
+              "$ref": "#/components/schemas/UUID"
+            }
+          }
+        },
+        "UUID": {
+          "format": "uuid",
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "type": "string"
+        }
+      }
+    }
+  }

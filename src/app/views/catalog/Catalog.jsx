@@ -2,6 +2,9 @@ import { Grid, styled, useTheme } from '@mui/material';
 import { Fragment } from 'react';
 import ApiTable from './shared/ApiTable';
 
+import SwaggerUI from "swagger-ui-react"
+import "swagger-ui-react/swagger-ui.css"
+
 const ContentBox = styled('div')(({ theme }) => ({
   margin: '30px',
   [theme.breakpoints.down('sm')]: { margin: '16px' },
@@ -35,7 +38,7 @@ const Catalog = () => {
       <ContentBox className="catalog">
         <Grid container spacing = {3}>
           <Grid item lg={12} md={12} sm={12} xs={12}>
-            <ApiTable></ApiTable>
+            <SwaggerUI url="https://petstore.swagger.io/v2/swagger.json" />
           </Grid>
         </Grid>
       </ContentBox>
