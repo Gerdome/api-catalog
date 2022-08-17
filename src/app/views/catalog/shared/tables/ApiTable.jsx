@@ -5,64 +5,24 @@ import {
   IconButton,
   MenuItem,
   Select,
-  styled,
-  Table,
   TableBody,
   TableCell,
   TableHead,
   TableRow,
   useTheme,
 } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getApiList } from 'app/redux/actions/CatalogActions';
+import { CardHeader, Title, CatalogTable, Small } from './TableStyles';
 
-const CardHeader = styled(Box)(() => ({
-  display: 'flex',
-  paddingLeft: '24px',
-  paddingRight: '24px',
-  marginBottom: '12px',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-}));
-
-const Title = styled('span')(() => ({
-  fontSize: '1rem',
-  fontWeight: '500',
-  textTransform: 'capitalize',
-}));
-
-const ProductTable = styled(Table)(() => ({
-  minWidth: 400,
-  whiteSpace: 'pre',
-  '& small': {
-    width: 50,
-    height: 15,
-    borderRadius: 500,
-    boxShadow: '0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 2px 0 rgba(0, 0, 0, 0.24)',
-  },
-  '& td': { borderBottom: 'none' },
-  '& td:first-of-type': { paddingLeft: '16px !important' },
-}));
-
-const Small = styled('small')(({ bgcolor }) => ({
-  width: 50,
-  height: 15,
-  color: '#fff',
-  padding: '2px 8px',
-  margin: '4px',
-  borderRadius: '4px',
-  overflow: 'hidden',
-  background: bgcolor,
-  boxShadow: '0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 2px 0 rgba(0, 0, 0, 0.24)',
-}));
 
 let apiCatalogLoaded = false;
 
 const ApiTable = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { apiList } = useSelector((state) => state.catalog);
+  const { apiList, objectOwnerList, dataSourceList } = useSelector((state) => state.catalog);
   const { palette } = useTheme();
   const bgPrimary = palette.primary.main;
   const bgSecondary = palette.secondary.main;
@@ -73,7 +33,7 @@ const ApiTable = () => {
   }
 
   const handleOpenApi = () => {
-    navigate('/catalog/petstore');
+    navigate('/catalog/default/api/petstore');
   }
 
   return (
@@ -87,7 +47,7 @@ const ApiTable = () => {
       </CardHeader>
 
       <Box overflow="auto">
-        <ProductTable>
+        <CatalogTable>
           <TableHead>
             <TableRow>
               <TableCell sx={{ px: 3 }} colSpan={2}>
@@ -95,6 +55,9 @@ const ApiTable = () => {
               </TableCell>
               <TableCell sx={{ px: 0 }} colSpan={2}>
                 Owner
+              </TableCell>
+              <TableCell sx={{ px: 0 }} colSpan={2}>
+                Data Source
               </TableCell>
               <TableCell sx={{ px: 0 }} colSpan={1}>
                 Type
@@ -115,10 +78,13 @@ const ApiTable = () => {
             {apiList.map((api, index) => (
               <TableRow key={index} hover style ={ index % 2? { background : "#f6f6f6" }:{ background : "white" }}>
                 <TableCell sx={{ px: 3 }} colSpan={2}>
-                  {api.name}
+                  <Link to={`api/${api.name}`} style={{'color': palette.primary.main, 'textDecoration': 'underline'}}>{api.name}</Link> 
                 </TableCell>
                 <TableCell sx={{ px: 0 }} colSpan={2}>
-                  {api.owner}
+                  { (objectOwnerList !== null) && (objectOwnerList.length > 0) ? objectOwnerList.find(({id}) => id === api.ownerObjectId).name : ''}
+                </TableCell>
+                <TableCell sx={{ px: 0 }} colSpan={2}>
+                  { (dataSourceList !== null) && (dataSourceList.length > 0) ? dataSourceList.find(({id}) => id === api.dataSourceId).name : ''}
                 </TableCell>
                 <TableCell sx={{ px: 0 }} colSpan={1}>
                   {api.type}
@@ -140,7 +106,7 @@ const ApiTable = () => {
               </TableRow>
             ))}
           </TableBody>
-        </ProductTable>
+        </CatalogTable>
       </Box>
     </Card>
   );

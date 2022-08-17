@@ -1,7 +1,9 @@
-import { GET_API_LIST } from "../actions/CatalogActions";
+import { GET_API_LIST, GET_DATA_SOURCE_LIST, GET_OBJECT_OWNER_LIST } from "../actions/CatalogActions";
 
 const initialState = {
-    apiList: []
+    apiList: [],
+    dataSourceList: [],
+    objectOwnerList: []
 }
 
 const CatalogReducer = function (state = initialState, action) {
@@ -10,6 +12,18 @@ const CatalogReducer = function (state = initialState, action) {
             return {
                 ...state,
                 apiList: [...action.payload],
+            };
+        }
+        case GET_DATA_SOURCE_LIST: {
+            return {
+                ...state,
+                dataSourceList: [...action.payload],
+            };
+        }
+        case GET_OBJECT_OWNER_LIST: {
+            return {
+                ...state,
+                objectOwnerList: [...action.payload],
             };
         }
         default: {

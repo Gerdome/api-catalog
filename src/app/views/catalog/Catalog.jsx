@@ -1,7 +1,9 @@
-import { Box, Grid, styled, useTheme } from '@mui/material';
+import { Box, Grid, styled } from '@mui/material';
 import { Fragment } from 'react';
 import { Breadcrumb } from 'app/components';
-import ApiTable from './shared/ApiTable';
+import ApiTable from './shared/tables/ApiTable';
+import DataSourceTable from './shared/tables/DataSourceTable';
+import ObjectOwnerTable from './shared/tables/ObjectOwnerTable';
 
 const ContentBox = styled('div')(({ theme }) => ({
   margin: '30px',
@@ -18,19 +20,24 @@ const BreadcrumbContainer = styled("div")(({ theme }) => ({
 }));
 
 const Catalog = () => {
-  const { palette } = useTheme();
 
   return (
     <Fragment>
       <BreadcrumbContainer>
-      <Box className="breadcrumb">
-        <Breadcrumb routeSegments={[{ name: "Catalog" }]} />
-      </Box>
+        <Box className="breadcrumb">
+          <Breadcrumb routeSegments={[{ name: "Catalog" }]} />
+        </Box>
       </BreadcrumbContainer>
       <ContentBox className="catalog">
-        <Grid container spacing = {3}>
+        <Grid container spacing={3}>
           <Grid item lg={12} md={12} sm={12} xs={12}>
             <ApiTable></ApiTable>
+          </Grid>
+          <Grid item lg={5} md={5} sm={5} xs={5}>
+            <DataSourceTable></DataSourceTable>
+          </Grid>
+          <Grid item lg={5} md={5} sm={5} xs={5}>
+            <ObjectOwnerTable></ObjectOwnerTable>
           </Grid>
         </Grid>
       </ContentBox>
