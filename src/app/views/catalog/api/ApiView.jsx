@@ -6,7 +6,7 @@ import { Tab } from '@mui/material';
 import React from 'react';
 import { Box } from '@mui/material';
 import { Breadcrumb } from 'app/components';
-// import SwaggerGUI from './SwaggerUI';
+import SwaggerGUI from './SwaggerUI';
 import {useParams} from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { ContentBox, BreadcrumbContainer } from '../shared/styles/ViewStyles';
@@ -52,7 +52,7 @@ const ApiView = () => {
                     Overview {apiName}
                 </TabPanel>
                 <TabPanel value={value} index={1}>
-                    {/* <SwaggerGUI openApiSpec={(apiList !== null) && (apiList.length > 0) ? apiList.find(({id}) => id === apiId).openapi : '' } ></SwaggerGUI> */}
+                    <SwaggerGUI openApiSpec={(apiList !== null) && (apiList.length > 0) ? apiList.find(({id}) => id === apiId).openapi : '' } ></SwaggerGUI>
                 </TabPanel>
                 <TabPanel value={value} index={2}>
                     OpenShift
