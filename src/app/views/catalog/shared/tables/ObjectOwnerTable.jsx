@@ -48,7 +48,7 @@ import {
               {objectOwnerList.map((owner, index) => (
                 <TableRow key={index} hover style ={ index % 2? { background : "#f6f6f6" }:{ background : "white" }}>
                   <TableCell sx={{ px: 3 }} colSpan={1}>
-                    <Link to={`team/${owner.id}`} style={{'color': palette.primary.main, 'textDecoration': 'underline'}}>{owner.name}</Link> 
+                    <Link to={`/catalog/default/team/${owner.id}`} style={{'color': palette.primary.main, 'textDecoration': 'underline'}}>{owner.name}</Link> 
                   </TableCell>
                   <TableCell sx={{ px: 0 }} colSpan={1}>
                     {owner.id}

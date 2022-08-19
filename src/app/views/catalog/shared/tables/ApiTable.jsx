@@ -33,7 +33,8 @@ const ApiTable = () => {
   }
 
   const handleOpenApi = () => {
-    navigate('/catalog/default/api/petstore');
+    console.log("do sth");
+   // navigate('/catalog/default/api/petstore');
   }
 
   return (
@@ -78,15 +79,15 @@ const ApiTable = () => {
             {apiList.map((api, index) => (
               <TableRow key={index} hover style={index % 2 ? { background: "#f6f6f6" } : { background: "white" }}>
                 <TableCell sx={{ px: 3 }} colSpan={2}>
-                  <Link to={`api/${api.id}`} style={{ 'color': palette.primary.main, 'textDecoration': 'underline' }}>{api.name}</Link>
+                  <Link to={`/catalog/default/api/${api.id}`} style={{ 'color': palette.primary.main, 'textDecoration': 'underline' }}>{api.name}</Link>
                 </TableCell>
                 <TableCell sx={{ px: 0 }} colSpan={2}>
-                  <Link to={`team/${api.ownerObjectId}`} style={{ 'color': palette.primary.main, 'textDecoration': 'underline' }}>
+                  <Link to={`/catalog/default/team/${api.ownerObjectId}`} style={{ 'color': palette.primary.main, 'textDecoration': 'underline' }}>
                     {(objectOwnerList !== null) && (objectOwnerList.length > 0) ? objectOwnerList.find(({ id }) => id === api.ownerObjectId).name : ''}
                   </Link>
                 </TableCell>
                 <TableCell sx={{ px: 0 }} colSpan={2}>
-                  <Link to={`data-source/${api.dataSourceId}`} style={{ 'color': palette.primary.main, 'textDecoration': 'underline' }}>
+                  <Link to={`/catalog/default/data-source/${api.dataSourceId}`} style={{ 'color': palette.primary.main, 'textDecoration': 'underline' }}>
                     {(dataSourceList !== null) && (dataSourceList.length > 0) ? dataSourceList.find(({ id }) => id === api.dataSourceId).name : ''}
                   </Link>
                 </TableCell>

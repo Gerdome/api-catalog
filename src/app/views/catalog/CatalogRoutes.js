@@ -10,6 +10,9 @@ const DataSourceView = Loadable(lazy(() => import('./data-source/DataSourceView'
 
 const catalogRoutes = [
   { path: '/catalog/default', element: <Catalog />, auth: authRoles.admin },
+  { path: '/catalog/default/api', element: <Catalog entity='api' />, auth: authRoles.admin },
+  { path: '/catalog/default/team', element: <Catalog entity='object-owner' />, auth: authRoles.admin },
+  { path: '/catalog/default/data-source', element: <Catalog entity='data-source' />, auth: authRoles.admin },
   { path: '/catalog/default/api/:apiId', element: <ApiView />, auth: authRoles.admin },
   { path: '/catalog/default/team/:teamId', element: <TeamView />, auth: authRoles.admin },
   { path: '/catalog/default/data-source/:dataSourceId', element: <DataSourceView />, auth: authRoles.admin },

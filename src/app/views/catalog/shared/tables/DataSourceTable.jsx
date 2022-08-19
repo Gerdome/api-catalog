@@ -48,7 +48,7 @@ const DataSourceTable = () => {
             {dataSourceList.map((source, index) => (
               <TableRow key={index} hover style={index % 2 ? { background: "#f6f6f6" } : { background: "white" }}>
                 <TableCell sx={{ px: 3 }} colSpan={1}>
-                  <Link to={`data-source/${source.id}`} style={{ 'color': palette.primary.main, 'textDecoration': 'underline' }}>
+                  <Link to={`/catalog/default/data-source/${source.id}`} style={{ 'color': palette.primary.main, 'textDecoration': 'underline' }}>
                     {source.name}
                   </Link>
                 </TableCell>
